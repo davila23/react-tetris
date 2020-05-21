@@ -3,8 +3,8 @@
 ## Available Scripts :
 
 
-### `yarn install `
-### `yarn start `
+###  ` 1 - yarn install `
+###  ` 2 - yarn start `
 
 
 ## Images Demo :
