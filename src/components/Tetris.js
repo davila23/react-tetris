@@ -8,13 +8,40 @@ import { useInterval } from '../hooks/useInterval';
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
 import { useGameStatus } from '../hooks/useGameStatus';
-
+import {
+  makeStyles,
+  IconButton,
+  Avatar,
+  ListItem,
+  Menu,
+  List,
+  Divider,
+  ListItemText,
+  ListItemSecondaryAction,
+  ListSubheader,
+  Paper,
+  Toolbar,
+  Tooltip
+} from '@material-ui/core';
+import {  GitHub as GitHubIcon } from '@material-ui/icons';
 // Components
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 
 const Tetris = () => {
+
+  const useStyles = makeStyles((theme) => ({
+  small: {
+    width: '60px',
+    height: '60px',
+    backgroundColor: 'white',
+    marginLeft: '60px'
+  },
+ }));
+
+  const classes = useStyles();
+
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -101,6 +128,7 @@ const Tetris = () => {
   };
 
   return (
+
     <StyledTetrisWrapper
       role="button"
       tabIndex="0"
@@ -108,22 +136,47 @@ const Tetris = () => {
       onKeyUp={keyUp}
     >
       <StyledTetris>
+
         <Stage stage={stage} />
         <aside>
+        <h1 style={{color : 'white', fontFamily: 'Pixel', marginLeft: '20px'}}>   - Rottay -</h1>
+        <p1 style={{color : 'white', fontFamily: 'Pixel', marginLeft: '20px'}}>Tetris Tutorial                   </p1>
+
+
+
+
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
             <div>
+
               <Display text={`Score: ${score}`} />
               <Display text={`rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
             </div>
           )}
           <StartButton callback={startGame} />
+          <Tooltip title='Go to repository' placement='left' arrow>
+
+          <IconButton
+        aria-label='github'
+        className={classes.small}
+        href='https://github.com/davila23/react-tetris'
+        target='_blank'
+        rel='noopener'
+      >
+        <GitHubIcon />
+      </IconButton>
+      </Tooltip>
+
         </aside>
       </StyledTetris>
+
+
+
     </StyledTetrisWrapper>
   );
+
 };
 
 export default Tetris;
